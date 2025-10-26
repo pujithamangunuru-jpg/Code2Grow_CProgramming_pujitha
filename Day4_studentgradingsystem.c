@@ -3,14 +3,16 @@
 int main() {
     float mp, atd;
     char grade[3];     
-    char remarks[20];  
+    char remarks[20];
+    int a,b,c,d,e;
 
-    printf("Enter the Marks percentage: ");
-    scanf("%f", &mp);
-    if (mp > 100 || mp < 0) {
-        printf("---- Invalid input ----\n");
-        return 0;
+    printf("Enter the Marks of 5 students ");
+    scanf("%d%d%d%d%d",&a,&b,&c,&d,&e);
+    if(a>100 || b>100 || c>100 || d>100 || e>100)
+    {
+        printf("---- invalid input---");
     }
+    mp=(a+b+c+d+e)/5;
     printf("Enter the Attendance percentage: ");
     scanf("%f", &atd);
 
@@ -55,5 +57,5 @@ int main() {
     printf("Remarks             : %s\n", remarks);
     printf("=============================\n");
 
-    return 0;
+    return 0;
 }
