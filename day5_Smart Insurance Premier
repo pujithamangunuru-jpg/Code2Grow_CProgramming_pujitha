@@ -1,0 +1,63 @@
+#include <stdio.h>
+
+int main() {
+    int age, h;
+    char g;
+    float p = 0;
+
+    printf("Enter age: ");
+    scanf("%d", &age);
+
+    printf("Enter gender (M/F): ");
+    scanf(" %c", &g);
+
+    printf("Health condition (1-Healthy / 0-Unhealthy): ");
+    scanf("%d", &h);
+
+    if (age < 25) {
+        if (h == 1)
+            p = 5000;
+        else {
+            printf("Status: Not Eligible for Insurance\n");
+            return 0;
+        }
+    } 
+    else if (age >= 25 && age <= 40) {
+        if (h == 1)
+            p = 7000;
+        else
+            p = 9500;
+    } 
+    else if (age >= 41 && age <= 60) {
+        if (h == 1)
+            p = 10000;
+        else
+            p = 13000;
+    } 
+    else if (age > 60) {
+        if (h == 1)
+            p = 15000;
+        else {
+            printf("Customer Details:\n");
+            printf("Age: %d\n", age);
+            printf("Gender: %c\n", g);
+            printf("Health: Unhealthy\n");
+            printf("Status: Not Eligible for Insurance\n");
+            return 0;
+        }
+    }
+
+    if (g == 'F' || g == 'f')
+        p = p - (p * 0.1);
+
+    printf("Customer Details:\n");
+    printf("Age: %d\n", age);
+    printf("Gender: %c\n", g);
+    if (h == 1)
+        printf("Health: Healthy\n");
+    else
+        printf("Health: Unhealthy\n");
+    printf("Final Premium: ₹%.2f\n", p);
+
+    return 0;
+}
