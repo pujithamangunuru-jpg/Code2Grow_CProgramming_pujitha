@@ -1,0 +1,55 @@
+#include <stdio.h>
+
+int main() {
+    int ch;
+    float bal = 10000, amt, bonus;
+
+    do {
+        printf("\n1. Deposit Money\n");
+        printf("2. Withdraw Money\n");
+        printf("3. Check Balance\n");
+        printf("4. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &ch);
+
+        if (ch == 1) {
+            printf("Enter amount to deposit: ");
+            scanf("%f", &amt);
+
+            bonus = 0;
+            if (amt > 25000) {
+                bonus = amt * 0.01;
+                printf("Bonus of ₹%.0f added!\n", bonus);
+            }
+
+            bal = bal + amt + bonus - 5;
+            printf("Service charge ₹5 applied.\n");
+            printf("Updated Balance: ₹%.2f\n", bal);
+        } 
+        else if (ch == 2) {
+            printf("Enter amount to withdraw: ");
+            scanf("%f", &amt);
+
+            if (amt > bal) {
+                printf("Insufficient balance! Withdrawal not allowed.\n");
+            } 
+            else {
+                bal = bal - amt - 5;
+                printf("Service charge ₹5 applied.\n");
+                printf("Updated Balance: ₹%.2f\n", bal);
+            }
+        } 
+        else if (ch == 3) {
+            printf("Current Balance: ₹%.2f\n", bal);
+        } 
+        else if (ch == 4) {
+            printf("Thank you for banking with us!\n");
+        } 
+        else {
+            printf("Invalid choice! Please try again.\n");
+        }
+
+    } while (ch != 4);
+
+    return 0;
+}
