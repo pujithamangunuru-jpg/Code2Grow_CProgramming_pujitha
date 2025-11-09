@@ -1,0 +1,69 @@
+#include <stdio.h>
+
+int main() {
+    int np;
+    printf("========== SRM Smart Bus Fare Calculator ==========\n");
+    printf("Enter number of passengers: ");
+    scanf("%d", &np);
+
+    int i = 1;
+    float tr = 0, hf = 0, lf = 9999;
+
+    while (i <= np) {
+        char n[30];
+        int age, time;
+        float dis, bf, ff;
+
+        printf("\n--- Passenger %d ---\n", i);
+        printf("Enter name: ");
+        scanf("%s", n);
+        printf("Enter age: ");
+        scanf("%d", &age);
+        printf("Enter distance (in km): ");
+        scanf("%f", &dis);
+        printf("Enter travel time (24-hour format): ");
+        scanf("%d", &time);
+
+        bf = dis * 10;
+        ff = bf;
+
+        if (age < 12) {
+            ff = ff * 0.5;
+            printf("Passenger: %s | Base Fare: %.0f | Child Discount Applied | ", n, bf);
+        } 
+        else if (age >= 60) {
+            ff = ff * 0.7;
+            printf("Passenger: %s | Base Fare: %.0f | Senior Citizen Discount Applied | ", n, bf);
+        } 
+        else {
+            printf("Passenger: %s | Base Fare: %.0f | ", n, bf);
+        }
+
+        if ((time >= 8 && time <= 10) || (time >= 17 && time <= 20)) {
+            ff = ff * 1.2;
+            printf("Peak Hour Surcharge Applied | ");
+        }
+
+        if (ff < 20)
+            ff = 20;
+
+        printf("Final Fare: %.0f\n", ff);
+
+        tr += ff;
+        if (ff > hf)
+            hf = ff;
+        if (ff < lf)
+            lf = ff;
+
+        i++;
+    }
+
+    printf("\n========== Daily Summary ==========\n");
+    printf("Total Passengers: %d\n", np);
+    printf("Total Revenue Collected: %.0f\n", tr);
+    printf("Highest Fare: %.0f\n", hf);
+    printf("Lowest Fare: %.0f\n", lf);
+    printf("==================================\n");
+
+    return 0;
+}
